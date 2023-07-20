@@ -7,20 +7,25 @@ import { NewBookComponent } from './new-book/new-book.component';
 import { BookReviewComponent } from './book-review/book-review.component';
 import { BookReviewService } from './book-review-service.service';
 import { FormsModule } from '@angular/forms';
+import { BookDetailModalComponent } from './book-detail-modal/book-detail-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksListComponent,
     NewBookComponent,
-    BookReviewComponent
+    BookReviewComponent,
+    BookDetailModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [BookReviewService],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

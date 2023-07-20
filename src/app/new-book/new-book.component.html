@@ -1,17 +1,23 @@
-<h2>Add New Book</h2>
-<div>
-  <label>Title:</label>
-  <input [(ngModel)]="newBook.title" placeholder="Title">
+<div class="container">
+  <h2>Add New Book</h2>
+  <div style="justify-content: left; align-items: flex-start; text-align: left;">
+  <div class="form-group">
+    <label>Title:</label>
+    <div style="margin: 1%;"></div>
+    <input [(ngModel)]="newBook.title" placeholder="Title">
+  </div>
+  <div class="form-group">
+    <label>Published Year:</label>
+    <div style="margin: 1%;"></div>
+    <input type="number" [(ngModel)]="newBook.publishedYear" placeholder="Published Year">
+  </div>
+  <div class="form-group">
+    <label>Book Image:</label>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+  </div>
+  <div *ngIf="selectedImage" class="form-group">
+    <img [src]="selectedImage" alt="Selected Book Image" height="100">
+  </div>
+  </div>
+  <button class="add-button" (click)="addBook()">Add Book</button>
 </div>
-<div>
-  <label>Published Year:</label>
-  <input type="number" [(ngModel)]="newBook.publishedYear" placeholder="Published Year">
-</div>
-<div>
-  <label>Book Image:</label>
-  <input type="file" (change)="onFileSelected($event)" accept="image/*">
-</div>
-<div *ngIf="selectedImage">
-  <img [src]="selectedImage" alt="Selected Book Image" height="100">
-</div>
-<button (click)="addBook()">Add Book</button>

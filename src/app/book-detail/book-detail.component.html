@@ -1,19 +1,16 @@
 <h2>Book Details</h2>
 <div *ngIf="book">
-<h3>{{ book?.title }}</h3>
+  <h3>{{ book?.title }}</h3>
   <div>
     <p>Published Year: {{ book?.publishedYear }}</p>
     <p *ngIf="book?.averageStarRating !== undefined">Average Star Rating: {{ book?.averageStarRating?.toFixed(2) }}</p>
     <p *ngIf="!book.averageStarRating">Average Star Rating: Not yet reviewed</p>
-    <div class="book-image" *ngIf="book?.pictureUrl">
-      <img [src]="book?.pictureUrl" alt="Book Cover">
-    </div>    
-    <div class="book-image-placeholder" *ngIf="!book?.picture">
-      <p>No image available</p>
-    </div>
   </div>
   <h3>Book Reviews</h3>
-  <ul>
+  <div *ngIf="reviews.length === 0">
+    <p>No reviews available</p>
+  </div>
+  <ul *ngIf="reviews.length > 0">
     <li *ngFor="let review of reviews">
       <p>Reviewer Name: {{ review.reviewerName }}</p>
       <p>Reviewer Email: {{ review.reviewerEmail }}</p>

@@ -12,7 +12,6 @@ export interface Book {
   averageStarRating?: number | undefined; // Optional property for average star rating
 }
 
-
 export interface Review {
   bookId: number; // Add 'bookId' property to identify which book the review belongs to
   reviewerName: string;
@@ -38,10 +37,6 @@ export class BookReviewService {
     if (storedBooks) {
       this.books = JSON.parse(storedBooks);
     }
-  }
-
-  private saveBooksToLocalStorage() {
-    localStorage.setItem(BOOKS_KEY, JSON.stringify(this.books));
   }
 
   addBook(book: Book) {
@@ -74,91 +69,18 @@ export class BookReviewService {
     const storedReviews = localStorage.getItem(REVIEWS_KEY);
     if (storedReviews) {
       this.reviews = JSON.parse(storedReviews);
+    } else {
+      this.reviews = []; // Initialize reviews as an empty array if there are no reviews in local storage
     }
   }
 
-  private saveReviewsToLocalStorage() {
+  public saveBooksToLocalStorage() { // Change 'private' to 'public'
+    localStorage.setItem(BOOKS_KEY, JSON.stringify(this.books));
+  }
+
+  // ... (existing code)
+
+  public saveReviewsToLocalStorage() { // Change 'private' to 'public'
     localStorage.setItem(REVIEWS_KEY, JSON.stringify(this.reviews));
   }
 }
-
-
-
-
-
-
-
-
-// import { Injectable } from '@angular/core';
-
-// const BOOKS_KEY = 'books';
-// const REVIEWS_KEY = 'reviews';
-
-// export interface Book {
-//   title: string;
-//   publishedYear: number;
-//   pictureUrl?: string; // Optional property for book picture URL
-//   starReview?: number; // Optional property for star review
-// }
-
-// export interface Review {
-//   bookId: number; // Add this property
-//   reviewerName: string;
-//   reviewerEmail: string;
-//   stars: number;
-//   reviewDescription: string;
-// }
-
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class BookReviewService {
-//   private books: Book[] = [];
-//   private reviews: Review[] = [];
-
-//   constructor() {
-//     this.loadBooksFromLocalStorage();
-//     this.loadReviewsFromLocalStorage();
-//   }
-
-//   private loadBooksFromLocalStorage() {
-//     const storedBooks = localStorage.getItem(BOOKS_KEY);
-//     if (storedBooks) {
-//       this.books = JSON.parse(storedBooks);
-//     }
-//   }
-
-//   private saveBooksToLocalStorage() {
-//     localStorage.setItem(BOOKS_KEY, JSON.stringify(this.books));
-//   }
-
-//   addBook(book: Book) {
-//     this.books.push(book);
-//     this.saveBooksToLocalStorage();
-//   }
-
-//   getBooks(): Book[] {
-//     return this.books;
-//   }
-
-//   addReview(review: Review) {
-//     this.reviews.push(review);
-//     this.saveReviewsToLocalStorage();
-//   }
-
-//   getReviewsForBook(bookId: number): Review[] {
-//     return this.reviews.filter(review => review.bookId === bookId) || [];
-//   }
-
-//   private loadReviewsFromLocalStorage() {
-//     const storedReviews = localStorage.getItem(REVIEWS_KEY);
-//     if (storedReviews) {
-//       this.reviews = JSON.parse(storedReviews);
-//     }
-//   }
-
-//   private saveReviewsToLocalStorage() {
-//     localStorage.setItem(REVIEWS_KEY, JSON.stringify(this.reviews));
-//   }
-// }

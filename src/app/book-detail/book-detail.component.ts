@@ -16,8 +16,15 @@ export class BookDetailComponent implements OnInit {
   ngOnInit(): void {
     const bookId = this.route.snapshot.paramMap.get('id');
     if (bookId) {
-      this.book = this.bookReviewService.getBookById(parseInt(bookId)) || undefined;
-      this.reviews = this.bookReviewService.getReviewsForBook(parseInt(bookId));
+      const bookIdInt = parseInt(bookId);
+      this.book = this.bookReviewService.getBookById(bookIdInt);
+      this.reviews = this.bookReviewService.getReviewsForBook(bookIdInt);
     }
+  }
+
+  saveDataToLocalStorage() {
+    // Save data to local storage
+    this.bookReviewService.saveBooksToLocalStorage();
+    this.bookReviewService.saveReviewsToLocalStorage();
   }
 }

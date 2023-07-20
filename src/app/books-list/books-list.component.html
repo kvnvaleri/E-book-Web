@@ -1,17 +1,46 @@
-<h2>Books List</h2>
-<ul>
-  <li *ngFor="let book of books">
-    <h3 (click)="showBookReview(book)">{{ book.title }}</h3>
-    <div>
+<div class="header">
+  <div style="margin-right: -10%; margin-left: 3%;">
+  <h1 style="font-size: 3.5rem; width: 50%; line-height: 120%; font-weight: 700;">Dealpos E-Books Website : Knowledge Source</h1>
+  <p style="width: 60%; font-size: 1rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+  <div style="margin-left: -10%;margin-right: -10%;"></div>
+  <img src="assets/Book.png" alt="Book Icon" style="height: 30rem; width: 30rem; margin-right: 3%;">
+</div>
+
+
+<div class="book-list-title">
+  <h2 style="font-size: 2rem; font-weight: 600;">Books List</h2>
+  <div class="actions" style="display: flex; flex-direction: row;">
+    <button class="add-button" (click)="exportBooks()">Export Books (JSON)</button>
+    <div style="margin: 1%;"></div>
+    <button class="add-button" (click)="goToAddNewBook()">Add New Book</button>
+    <div style="margin: 1%;"></div>
+    <input type="text" placeholder="Search Books" (keyup)="onSearch($event)">
+  </div>
+</div>
+
+
+<div class="books-container">
+  <div *ngFor="let book of books" class="book-card">
+    <h3>{{ book.title }}</h3>
+    <div class="book-info">
       <p>Published Year: {{ book.publishedYear }}</p>
       <p *ngIf="book.starReview !== undefined">Average Star Rating: {{ book.starReview.toFixed(2) }}</p>
-      <p *ngIf="!book.starReview">Average Star Rating: Not yet reviewed</p>
-      <div class="book-image" *ngIf="book.pictureUrl">
-        <img [src]="book.pictureUrl" alt="Book Cover">
-      </div>
-      <div class="book-image-placeholder" *ngIf="!book.pictureUrl">
-        <p>No image available</p>
+    </div>
+    <div style="display: flex; flex-direction: row; margin-bottom: 7%;">
+    <button (click)="showBookReview(book)" class="add-button">Details</button>
+    <div style="margin: 1%;"></div>
+    <button class="add-button" (click)="goToReview()">Add Review</button>
+    </div>
+    <div class="book-image" *ngIf="book.pictureUrl">
+      <img [src]="book.pictureUrl" alt="Book Cover" class="book-image-placeholder">
+    </div>
+    <div class="book-image-placeholder" *ngIf="!book.pictureUrl">
+      <div class="book-image">
+        <p>No Image</p>
       </div>
     </div>
-  </li>
-</ul>
+  </div>
+</div>
+
+<div style="margin-bottom: 2%;"></div>
