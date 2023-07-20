@@ -1,0 +1,18 @@
+<h2>Add Book Review</h2>
+<div>
+  <label>Reviewer Name:</label>
+  <input [(ngModel)]="newReview.reviewerName" placeholder="Reviewer Name">
+</div>
+<div>
+  <label>Reviewer Email:</label>
+  <input [(ngModel)]="newReview.reviewerEmail" placeholder="Reviewer Email">
+</div>
+<div>
+  <label>Stars (1-5):</label>
+  <input type="number" [(ngModel)]="newReview.stars" placeholder="Stars" min="1" max="5">
+</div>
+<div>
+  <label>Note:</label>
+  <textarea [(ngModel)]="newReview.reviewDescription" placeholder="Review Description"></textarea>
+</div>
+<button (click)="addReview()">Add Review</button>

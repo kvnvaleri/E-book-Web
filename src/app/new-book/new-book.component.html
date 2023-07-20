@@ -1,0 +1,17 @@
+<h2>Add New Book</h2>
+<div>
+  <label>Title:</label>
+  <input [(ngModel)]="newBook.title" placeholder="Title">
+</div>
+<div>
+  <label>Published Year:</label>
+  <input type="number" [(ngModel)]="newBook.publishedYear" placeholder="Published Year">
+</div>
+<div>
+  <label>Book Image:</label>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+</div>
+<div *ngIf="selectedImage">
+  <img [src]="selectedImage" alt="Selected Book Image" height="100">
+</div>
+<button (click)="addBook()">Add Book</button>
